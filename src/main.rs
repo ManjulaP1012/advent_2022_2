@@ -21,13 +21,27 @@ fn main() -> std::io::Result<()> {
         let mut line = line.split(" ");
         let player1 = shape_value.get(line.next().unwrap()).unwrap();
         let player2 = shape_value2.get(line.next().unwrap()).unwrap();
-
+        //println!("{} {}", player1, player2);
         if player1 == player2 {
             points += player2 + 3;
-        } else if player1 > player2 {
-            points += player2 + 0;
+        } else if *player1 == 1 {
+            if *player2 == 2 {
+                points += 6 + player2;
+            } else {
+                points += *player2;
+            }
+        } else if *player1 == 2 {
+            if *player2 == 3 {
+                points += 6 + player2;
+            } else {
+                points += *player2;
+            }
         } else {
-            points += player2 + 6;
+            if *player2 == 1 {
+                points += 6 + player2;
+            } else {
+                points += *player2;
+            } 
         }
     }
     println!("Total points: {points}");
